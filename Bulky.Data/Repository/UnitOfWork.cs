@@ -1,9 +1,4 @@
 ﻿using Bulky.DataAccess.Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository
 {
@@ -11,6 +6,7 @@ namespace Bulky.DataAccess.Repository
     {
         private ApplicationDbContext _db;
         private ICategoryRepository _categoryRepository;
+        private IProductRepository _productRepository;
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -22,6 +18,16 @@ namespace Bulky.DataAccess.Repository
                 if (_categoryRepository == null)
                     _categoryRepository = new CategoryRepository(_db);
                 return _categoryRepository;
+            }
+        }
+
+        public IProductRepository Product
+        {
+            get
+            {
+                if (_productRepository == null)
+                    _productRepository = new ProductRepository(_db);
+                return _productRepository;
             }
         }
 
