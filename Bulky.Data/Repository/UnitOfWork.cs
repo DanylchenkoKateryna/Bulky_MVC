@@ -7,6 +7,7 @@ namespace Bulky.DataAccess.Repository
         private ApplicationDbContext _db;
         private ICategoryRepository _categoryRepository;
         private IProductRepository _productRepository;
+        private ICompanyRepository _companyRepository;
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -28,6 +29,16 @@ namespace Bulky.DataAccess.Repository
                 if (_productRepository == null)
                     _productRepository = new ProductRepository(_db);
                 return _productRepository;
+            }
+        }
+
+        public ICompanyRepository Company
+        {
+            get
+            {
+                if (_companyRepository == null)
+                    _companyRepository = new CompanyRepository(_db);
+                return _companyRepository;
             }
         }
 
