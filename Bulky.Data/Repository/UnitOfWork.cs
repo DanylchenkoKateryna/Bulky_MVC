@@ -10,6 +10,8 @@ namespace Bulky.DataAccess.Repository
         private ICompanyRepository _companyRepository;
         private IShoppingCartRepository _shoppingCartRepository;
         private IApplicationUserRepository _applicationUserRepository;
+        private IOrderHeaderRepository _orderHeaderRepository;
+        private IOrderDetailRepository _orderDetailRepository;
 
 
         public UnitOfWork(ApplicationDbContext db)
@@ -63,6 +65,24 @@ namespace Bulky.DataAccess.Repository
                 if (_applicationUserRepository == null)
                     _applicationUserRepository = new ApplicationUserRepository(_db);
                 return _applicationUserRepository;
+            }
+        }
+        public IOrderHeaderRepository OrderHeader
+        {
+            get
+            {
+                if (_orderHeaderRepository == null)
+                    _orderHeaderRepository = new OrderHeaderRepository(_db);
+                return _orderHeaderRepository;
+            }
+        }
+        public IOrderDetailRepository OrderDetail
+        {
+            get
+            {
+                if (_orderDetailRepository == null)
+                    _orderDetailRepository = new OrderDetailRepository(_db);
+                return _orderDetailRepository;
             }
         }
 
